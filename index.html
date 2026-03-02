@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Traffic & Street System</title>
+    <meta http-equiv="refresh" content="3">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg,#1f3c88,#39a2db);
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
+            gap: 25px;
+            padding: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: #1f3c88;
+        }
+
+        .value {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .traffic-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .light-box {
+            background: #f4f6f9;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        button {
+            padding: 8px 14px;
+            margin-top: 8px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .red-btn { background: #e74c3c; color: white; }
+        .green-btn { background: #2ecc71; color: white; }
+        .off-btn { background: #7f8c8d; color: white; }
+
+        button:hover { opacity: 0.85; }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    Smart Street & Traffic Monitoring
+</header>
+
+<div class="container">
+
+    <!-- LDR -->
+    <div class="card">
+        <h2>LDR Sensor</h2>
+        <div class="value">Value: {{ ldr }}</div>
+    </div>
+
+    <!-- IR -->
+    <div class="card">
+        <h2>IR Sensor</h2>
+        <div class="value">
+            {% if ir == 1 %}
+                Motion Detected
+            {% else %}
+                No Motion
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Street -->
+    <div class="card">
+        <h2>Street Light Status</h2>
+        <div class="value">{{ street }}</div>
+    </div>
+
+    <!-- Traffic -->
+    <div class="card">
+        <h2>Traffic Lights Control</h2>
+
+        <div class="traffic-grid">
+
+            <!-- Red Light 1 -->
+            <div class="light-box">
+                <b>Red Light 1</b><br>
+                <a href="/traffic/red">
+                    <button class="red-btn">ON</button>
+                </a>
+            </div>
+
+            <!-- Red Light 2 -->
+            <div class="light-box">
+                <b>Red Light 2</b><br>
+                <a href="/traffic/red">
+                    <button class="red-btn">ON</button>
+                </a>
+            </div>
+
+            <!-- Green Light 1 -->
+            <div class="light-box">
+                <b>Green Light 1</b><br>
+                <a href="/traffic/green">
+                    <button class="green-btn">ON</button>
+                </a>
+            </div>
+
+            <!-- Green Light 2 -->
+            <div class="light-box">
+                <b>Green Light 2</b><br>
+                <a href="/traffic/green">
+                    <button class="green-btn">ON</button>
+                </a>
+            </div>
+
+        </div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <a href="/traffic/off">
+                <button class="off-btn">ALL OFF</button>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    Raspberry Pi Smart Lighting Project
+</footer>
+
+</body>
+</html>
+
+
